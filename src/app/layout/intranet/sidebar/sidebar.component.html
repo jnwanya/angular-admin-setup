@@ -1,0 +1,76 @@
+
+<div class="d-color">
+ <!-- <div class="pcoded-navigation-label" [attr.menu-title-theme]="menuTitleTheme">{{asideItems.label}}</div> -->
+  <ul class="pcoded-item pcoded-left-item" [attr.item-border]="itemBorder" [attr.item-border-style]="itemBorderStyle" [attr.subitem-border]="subItemBorder" *ngFor="let item of sideBarMenuList" appAccordionLink group="{{item.state}}">
+    <li [routerLinkActive]="['active']" *ngIf="item.isExternalLink" appAccordionLink group="{{item.state}}">
+      <a [routerLinkActive]="['active']" class="ripple" [href]="item.path" target="_blank" appAccordionToggle>
+        <span class="pcoded-micon"><i class="{{ item.icon }}"></i><b>{{ item.shortLabel}}</b></span>
+        <span class="pcoded-mtext">{{ item.title }}</span>
+        <span *ngIf="item.badge" [ngClass]="'pcoded-badge label label-'+item.badge.name">{{item.badge.value}}</span>
+        <span class="pcoded-mcaret"></span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="['active']" *ngIf="!item.isExternalLink && item.submenu.length == 0" appAccordionLink group="{{item.state}}">
+      <a [routerLinkActive]="['active']" class="ripple" [routerLink]="[item.path]" target="_self" appAccordionToggle *ngIf="item.mainState; else mainContent">
+        <span class="pcoded-micon"><i class="{{ item.icon }}"></i><b>{{ item.shortLabel }}</b></span>
+        <span class="pcoded-mtext">{{ item.title }}</span>
+        <span *ngIf="item.badge" [ngClass]="'pcoded-badge label label-'+item.badge.name">{{item.badge.value}}</span>
+        <span class="pcoded-mcaret"></span>
+      </a>
+      <ng-template #mainContent>
+        <a [routerLinkActive]="['active']" class="ripple" [routerLink]="[item.path]" target="_self" appAccordionToggle>
+          <span class="pcoded-micon"><i class="{{ item.icon }}"></i><b>{{ item.shortLabel }}</b></span>
+          <span class="pcoded-mtext">{{ item.title }}</span>
+          <span *ngIf="item.badge" [ngClass]="'pcoded-badge label label-'+item.badge.name">{{item.badge.value}}</span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </ng-template>
+    </li>
+    <li (mouseleave)="fireClickLeave($event)" [routerLinkActive]="['active']" *ngIf="!item.isExternalLink && item.submenu.length != 0" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" appAccordionLink group="{{item.state}}">
+      <a (mouseover)="fireClick($event)" [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
+        <div class="ripple menu-ripple"></div>
+        <span class="pcoded-micon"><i class="{{ item.icon }}"></i><b>{{ item.shortLabel}}</b></span>
+        <span class="pcoded-mtext">{{ item.title }}</span>
+        <span *ngIf="item.badge" [ngClass]="'pcoded-badge label label-'+item.badge.name">{{item.badge.value}}</span>
+        <span class="pcoded-mcaret"></span>
+      </a>
+      <ul class="pcoded-submenu">
+        <ng-template ngFor let-subItem [ngForOf]="item.submenu">
+          <li [routerLinkActive]="['active']">
+            <a [routerLinkActive]="['active']" [routerLink]="[subItem.path]" target="_self">
+              <div class="ripple menu-ripple"></div>
+              <span class="pcoded-micon"><i class="icon-angle-right"></i></span>
+              <span class="pcoded-mtext">{{ subItem.name }} </span>
+              <span *ngIf="item.badge" [ngClass]="'pcoded-badge label label-'+subItem.badge.name">{{subItem.badge.value}}</span>
+              <span class="pcoded-mcaret"></span>
+            </a>
+          </li>
+
+          <!--<li (mouseleave)="fireClickLeave($event)" [routerLinkActive]="['active']" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
+            <a (mouseover)="fireClick($event)" [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
+              <div class="ripple menu-ripple"></div>
+              <span class="pcoded-micon"><i class="icon-direction-alt"></i></span>
+              <span class="pcoded-mtext">{{ asideChildren.name }}</span>
+              <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
+              <span class="pcoded-mcaret"></span>
+            </a>
+            <ul class="pcoded-submenu">
+              <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
+                <li [routerLinkActive]="['active']">
+                  <a [routerLinkActive]="['active']" [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
+                    <div class="ripple menu-ripple"></div>
+                    <span class="pcoded-micon"><i class="icon-angle-right"></i></span>
+                    <span class="pcoded-mtext">{{ asideChildrenSub.name }}</span>
+                    <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" class="pcoded-badge label label-{{ asideChildrenSubBadge.type }}">{{asideChildrenSubBadge.value}}</span>
+                    <span class="pcoded-mcaret"></span>
+                  </a>
+                </li>
+              </ng-template>
+            </ul>
+          </li> -->
+        </ng-template>
+      </ul>
+    </li>
+  </ul>
+</div>
