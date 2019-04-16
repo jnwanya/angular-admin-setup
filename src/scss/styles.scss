@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import "themify-icons/themify-icons";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+//@import '~@swimlane/ngx-datatable/release/index.css';
+//@import '~@swimlane/ngx-datatable/release/themes/material.css';
+//@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
 
 // General theme contents
 @import "partials/variables";

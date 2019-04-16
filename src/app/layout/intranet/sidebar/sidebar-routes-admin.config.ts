@@ -4,9 +4,11 @@
 import {RouteInfo} from './sidebar-metadata';
 
 export const ADMIN_SIDEBAR: RouteInfo[] = [
-  { path: '/admin/dashboard', title: 'Dashboard', state: 'dashboard', icon: 'icon-home', class: '', badge: null, shortLabel: 'D',
+  { path: '/admin/dashboard', title: 'Dashboard', state: 'dashboard', icon: 'fas fa-home', class: '', badge: null, shortLabel: 'D',
      isExternalLink: false, submenu: [] },
-  {
+  { path: '/admin/company', title: 'Company', state: 'company', icon: 'fas fa-server', class: '', badge: null, shortLabel: 'C',
+    isExternalLink: false, submenu: [] },
+  /*{
     path: '',
     state: 'company',
     shortLabel: 'C',
@@ -33,5 +35,5 @@ export const ADMIN_SIDEBAR: RouteInfo[] = [
         name: 'Analytics',
       }
     ]
-  }
+  }*/
 ];

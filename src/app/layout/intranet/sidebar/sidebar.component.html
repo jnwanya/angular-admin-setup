@@ -1,6 +1,6 @@
 
 <div class="d-color">
- <!-- <div class="pcoded-navigation-label" [attr.menu-title-theme]="menuTitleTheme">{{asideItems.label}}</div> -->
+  <div class="pcoded-navigation-label" [attr.menu-title-theme]="menuTitleTheme">Navigations</div>
   <ul class="pcoded-item pcoded-left-item" [attr.item-border]="itemBorder" [attr.item-border-style]="itemBorderStyle" [attr.subitem-border]="subItemBorder" *ngFor="let item of sideBarMenuList" appAccordionLink group="{{item.state}}">
     <li [routerLinkActive]="['active']" *ngIf="item.isExternalLink" appAccordionLink group="{{item.state}}">
       <a [routerLinkActive]="['active']" class="ripple" [href]="item.path" target="_blank" appAccordionToggle>

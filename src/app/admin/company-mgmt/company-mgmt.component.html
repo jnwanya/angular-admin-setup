@@ -1,0 +1,34 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [title]="'Company List'" [classHeader]="false" [cardOptionBlock]="true">
+        <!--<span class="code-header">use class <code>data-table </code> with ngx-datatable and set <code>search element</code>.</span> -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="f-right">
+              <button (click)="showCompanySetupPage()" class="btn btn-mat btn-md btn-primary ripple light">Create Company <i class="fas fa-plus-circle"></i></button>
+            </div>
+            <label class="dt-cust-search">
+              <div class="form-group">
+                <input type='text' class="form-control input-sm m-l-10" placeholder='Search Name' (keyup)='updateFilter($event)'
+                />
+              </div>
+            </label>
+          </div>
+        </div>
+        <ngx-datatable
+          #table
+          class='data-table'
+          [columns]="columns"
+          [columnMode]="columnMode"
+          [loadingIndicator]="loadingIndicator"
+          [headerHeight]="50"
+          [footerHeight]="40"
+          [rowHeight]="50"
+          [limit]="10"
+          [rows]='rowsFilter'>
+        </ngx-datatable>
+      </app-card>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,7 @@ export class BreadcrumbComponent {
                 let icon = '';
                 if (routes.snapshot.data.icon !== undefined) {
                   icon = routes.snapshot.data.icon;
+                  console.log(icon);
                 }
 
                 let caption = '';

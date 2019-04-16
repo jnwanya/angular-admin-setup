@@ -7,13 +7,14 @@ import {TitleResolverComponent} from '../layout/title-resolver/title-resolver.co
 import {SpinnerComponent} from './spinner/spinner.component';
 import {ClickOutsideModule} from 'ng-click-outside';
 import {AccordionAnchorDirective, AccordionDirective, AccordionLinkDirective} from './accordion';
-
+import { CardComponent } from './card/card.component';
+import {CardToggleDirective} from './card/card-toggle.directive';
 /*
 import {ToggleFullScreenDirective} from './fullscreen/toggle-fullscreen.directive';
 
 
 import {CardComponent} from './card/card.component';
-import {CardToggleDirective} from './card/card-toggle.directive';
+
 import {ModalBasicComponent} from './modal-basic/modal-basic.component';
 import {ModalAnimationComponent} from './modal-animation/modal-animation.component';
 import {DataFilterPipe} from './elements/data-filter.pipe'; */
@@ -41,10 +42,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
+    CardToggleDirective,
+    CardComponent
 
    /* ToggleFullScreenDirective,
-    CardToggleDirective,
-    CardComponent,
     ModalBasicComponent,
     ModalAnimationComponent,
     DataFilterPipe */
@@ -55,11 +56,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
-    /*ToggleFullScreenDirective,
-
-
-    CardToggleDirective,
     CardComponent,
+    CardToggleDirective,
+    /*ToggleFullScreenDirective,
     ModalBasicComponent,
     ModalAnimationComponent,
     DataFilterPipe*/

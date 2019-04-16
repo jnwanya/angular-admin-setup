@@ -1,0 +1,146 @@
+<div class="page-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card>
+        <aw-wizard class="custom-css" #wizardComponent>
+          <aw-wizard-step>
+            <!--<ng-template awWizardStepTitle>
+              <span style="color: grey">Company Information</span>
+            </ng-template> -->
+            <app-card [title]="'Company Information'" [cardOptionBlock]="true" >
+              <form #companyInformationForm = "ngForm" (ngSubmit)="validateInformationForm(companyInformationForm)">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-8">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Company Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="companyName" ngModel class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Official Email</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="companyEmail" ngModel class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Company Address</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="companyAddress" ngModel required placeholder="Enter Company full address" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Country</label>
+                      <div class="col-sm-9">
+                        <ng-select [items]="data" bindLabel="name" name="country" placeholder="Select Country" [(ngModel)]="dataValue">
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="centered-content">
+                  <button class="btn btn-mat btn-md btn-primary ripple light" type="submit">Next Step <i class="fas fa-arrow-right"></i></button>
+                  <button style="display: none" id="companyInformationNextButton" class="btn btn-mat btn-md btn-primary ripple light" awNextStep>Next Step <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </form>
+            </app-card>
+
+          </aw-wizard-step>
+          <aw-wizard-step stepTitle="Title of step 2">
+            <app-card [title]="'Company Administrator'" [cardOptionBlock]="true" >
+              <form #companyContactInfoForm = "ngForm" (ngSubmit)="validateContactInfoForm(companyContactInfoForm)">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-8">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">First Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Last Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Email Address</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Phone Number</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="centered-content">
+                  <button class="btn btn-mat btn-md btn-primary ripple light" type="button" awPreviousStep style="margin-right: 20px"><i class="fas fa-arrow-left"></i> Previous Step</button>
+                  <button class="btn btn-mat btn-md btn-primary ripple light" type="submit">Next Step <i class="fas fa-arrow-right"></i></button>
+                  <button style="display: none" id="companyContactInfoNextButton" awNextStep>Next Step <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </form>
+            </app-card>
+
+          </aw-wizard-step>
+          <aw-wizard-step stepTitle="Title of step 3">
+            <app-card [title]="'Company Service Supplier'" [cardOptionBlock]="true" >
+              <form #supplierSetupForm = "ngForm" (ngSubmit)="validateSupplierDetailAndSetUpCompany(supplierSetupForm)">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-8">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">SELECT FLIGHT SUPPLIER</label>
+                      <div class="col-sm-8">
+                        <ng-select [items]="flightSupplierList" name="flightSupplier"
+                                   bindLabel="name"
+                                   placeholder="Select Flight Supplier"
+                                   [ngModel]="flightSupplier" (change)="handleSupplierSelection($event, 'flight')">
+                        </ng-select>
+                      </div>
+                    </div>
+                    <ng-container *ngIf="flightSupplier?.name == 'AMADEUS'">
+                      <div class="form-group row">
+                        <div class="col-sm-4 col-md-4">
+                          <label class="control-label scu-bold" for="pseudoCityCode">AMADEUS PSEUDO CODE</label>
+                          <input type="text" class="form-control" id="pseudoCityCode" value="" name="pseudoCityCode" />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                          <label class="control-label scu-bold" for="amadeusUserId">AMADEUS USER ID</label>
+                          <input type="text" class="form-control" id="amadeusUserId" value="" name="amadeusUserId" />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                          <label class="control-label scu-bold" for="amadeusPassword">AMADEUS PASSWORD</label>
+                          <input type="text" class="form-control" id="amadeusPassword" value="" name="amadeusPassword" />
+                        </div>
+                      </div>
+                    </ng-container>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">SELECT HOTEL SUPPLIER</label>
+                      <div class="col-sm-8">
+                        <ng-select [items]="hotelSupplierList" name="hotelSupplier"
+                                   bindLabel="name"
+                                   placeholder="Select Hotel Supplier"
+                                   [ngModel]="hotelSupplier" (change)="handleSupplierSelection($event, 'hotel')">
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="centered-content">
+                  <button class="btn btn-mat btn-md btn-primary ripple light" awPreviousStep style="margin-right: 20px"><i class="fas fa-arrow-left"></i> Previous Step</button>
+                  <button class="btn btn-mat btn-md btn-primary ripple light" type="submit">Submit <i class="fas fa-check-circle"></i></button>
+                </div>
+              </form>
+            </app-card>
+
+          </aw-wizard-step>
+        </aw-wizard>
+      </app-card>
+
+
+    </div>
+  </div>
+</div>
