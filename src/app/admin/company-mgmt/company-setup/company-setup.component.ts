@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MovingDirection, WizardComponent} from 'angular-archwizard';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-company-setup',
@@ -10,6 +9,9 @@ import {NgForm} from '@angular/forms';
 export class CompanySetupComponent implements OnInit {
 
  // @ViewChild('companyInformationForm')  companyInformationForm: NgForm;
+
+ // @ViewChild(WizardComponent) public wizard: WizardComponent;
+
   data = [{name: 'John', code : 1}, {name: 'Chima', code: 2}];
   dataValue = this.data[0];
   flightSupplierList = [{name: 'AMADEUS', code : '01'}, {name: 'GALILEO', code: 'O2'}];
@@ -25,6 +27,7 @@ export class CompanySetupComponent implements OnInit {
     console.log('--------COMPANY SETUP VALIDATION---------', form.value);
     const nextButton: HTMLButtonElement = document.getElementById('companyInformationNextButton') as HTMLButtonElement;
     nextButton.click();
+   // this.wizard.model.currentStep.enter(MovingDirection.Forwards);
   }
   validateContactInfoForm(form) {
     console.log('--------COMPANY SETUP VALIDATION---------', form.value);

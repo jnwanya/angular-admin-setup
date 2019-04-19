@@ -3,6 +3,10 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import "themify-icons/themify-icons";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+//@import '~ngx-toastr/toastr.css';
+@import '~ngx-toastr/toastr-bs4-alert';
+
 //@import '~@swimlane/ngx-datatable/release/index.css';
 //@import '~@swimlane/ngx-datatable/release/themes/material.css';
 //@import '~@swimlane/ngx-datatable/release/assets/icons.css';
@@ -57,9 +61,7 @@
 // dark layout css
 @import "partials/dark";
 
-@import "~ng2-toasty/style-default.css";
-@import "~ng2-toasty/style-bootstrap.css";
-@import "~ng2-toasty/style-material.css";
-
 //angular custom
 @import "partials/custom";
+
+

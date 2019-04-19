@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
-import {MenuItems} from '../../shared/menu-items/menu-items';
+import {Store} from '@ngrx/store';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-intranet',
@@ -165,7 +166,7 @@ export class IntranetComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(public menuItems: MenuItems) {
+  constructor(private store: Store<fromStore.AppState>) {
     this.animateSidebar = '';
     this.navType = 'st2';
     this.themeLayout = 'vertical';
@@ -408,41 +409,8 @@ export class IntranetComponent implements OnInit, OnDestroy {
     }
   }
 
-  hoverOutsideSidebar() {
-    if (this.verticalNavType === 'collapsed') {
-      const mainEle = document.querySelectorAll('.pcoded-trigger');
-      for (let i = 0; i < mainEle.length; i++) {
-        mainEle[i].classList.remove('pcoded-trigger');
-      }
-    }
-  }
-
-  fireClick(e) {
-    if (this.verticalNavType === 'collapsed') {
-      const parentEle = e.target.parentNode.parentNode;
-      if (parentEle.classList.contains('pcoded-trigger')) {
-        const subEle = parentEle.querySelectorAll('.pcoded-hasmenu');
-        for (let i = 0; i < subEle.length; i++) {
-          if (subEle[i].classList.contains('pcoded-trigger')) {
-            subEle[i].classList.remove('pcoded-trigger');
-          }
-        }
-      } else {
-        e.target.click();
-      }
-    }
-  }
-
-  fireClickLeave(e) {
-    if (this.verticalNavType === 'collapsed') {
-      const parentEle = <HTMLElement>e.target.parentNode.parentNode;
-      const subEle = parentEle.querySelectorAll('.pcoded-hasmenu');
-      for (let i = 0; i < subEle.length; i++) {
-        if (subEle[i].classList.contains('pcoded-trigger')) {
-          subEle[i].classList.remove('pcoded-trigger');
-        }
-      }
-    }
+  handleLogout() {
+    this.store.dispatch(new fromStore.Logout());
   }
 
 }

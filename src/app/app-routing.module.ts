@@ -4,9 +4,10 @@ import {ADMIN_ROUTES} from './shared/routes/admin.routes';
 import {HOME_ROUTES} from './shared/routes/extranet.routes';
 import {IntranetComponent} from './layout/intranet/intranet.component';
 import {ExtranetComponent} from './layout/extranet/extranet.component';
+import {AuthenticationGuard} from './shared/guard/authentication.guard';
 
 const routes: Routes = [
-  { path: 'admin', component: IntranetComponent, children: ADMIN_ROUTES },
+  { path: 'admin', component: IntranetComponent, children: ADMIN_ROUTES, canActivate: [AuthenticationGuard] },
   { path: '', component: ExtranetComponent, children: HOME_ROUTES },
   { path: '**', redirectTo: '/coming-soon' }
 ];
